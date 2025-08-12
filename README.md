@@ -1,6 +1,6 @@
 # LinCity-NG
 
-[![Get it on Flathub](https://flathub.org/api/badge)](https://flathub.org/)
+[![Get it on Flathub](https://flathub.org/api/badge)](https://flathub.org/apps/io.github.lincity_ng.lincity-ng)
 
 This repository is specifically for the Flatpak distribution of the game. See https://github.com/lincity-ng/lincity-ng for the main project; please report bugs that are not specific to the Flatpak build there.
 
