@@ -1,6 +1,6 @@
 app-id: io.github.lincity_ng.lincity-ng
 runtime: org.freedesktop.Platform
-runtime-version: '24.08'
+runtime-version: '25.08'
 sdk: org.freedesktop.Sdk
 
 command: lincity-ng
@@ -10,6 +10,7 @@ finish-args:
   - --socket=wayland
   - --socket=fallback-x11
   - --socket=pulseaudio
+  - --filesystem=xdg-run/pipewire-0
 
 cleanup:
   - /include
@@ -18,6 +19,9 @@ cleanup:
   - /share/doc
 
 modules:
+  - shared-modules/SDL2/SDL2_image.json
+  - shared-modules/SDL2/SDL2_ttf.json
+
   - name: libxmlplusplus
     buildsystem: meson
     config-opts:
