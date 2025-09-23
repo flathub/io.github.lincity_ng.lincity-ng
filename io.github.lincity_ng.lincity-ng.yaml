@@ -56,3 +56,7 @@ modules:
           version-query: .tag_name | sub("^lincity-ng-"; "")
           url-query: .assets[] | select(.name=="lincity-ng-" + $version + "-Source.tar.xz")
             | .browser_download_url
+
+      # Fixup for 2.14.2
+      - type: patch
+        path: release-reorder.patch
