@@ -47,8 +47,8 @@ modules:
       - -DLINCITYNG_VERSION_SUFFIX=flatpak
     sources:
       - type: archive
-        url: https://github.com/lincity-ng/lincity-ng/releases/download/lincity-ng-2.14.1/lincity-ng-2.14.1-Source.tar.xz
-        sha256: e99627cd71f3b1f60db5a6e534e55cce73977c466b36da3a6920dbc34c244b01
+        url: https://github.com/lincity-ng/lincity-ng/releases/download/lincity-ng-2.14.2/lincity-ng-2.14.2-Source.tar.xz
+        sha256: 772c0d127d396b307e1d612c41c569196c536b1ed87d242a5403aa3de8de687d
         x-checker-data:
           type: json
           is-main-source: true
@@ -56,3 +56,7 @@ modules:
           version-query: .tag_name | sub("^lincity-ng-"; "")
           url-query: .assets[] | select(.name=="lincity-ng-" + $version + "-Source.tar.xz")
             | .browser_download_url
+
+      # Fixup for 2.14.2
+      - type: patch
+        path: release-reorder.patch
