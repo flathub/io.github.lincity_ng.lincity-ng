@@ -31,8 +31,8 @@ modules:
       - /lib/libxml++-5.0
     sources:
       - type: archive
-        url: https://github.com/libxmlplusplus/libxmlplusplus/releases/download/5.4.0/libxml%2B%2B-5.4.0.tar.xz
-        sha256: e9a23c436686a94698d2138e6bcbaf849121d63bfa0f50dc34fefbfd79566848
+        url: https://github.com/libxmlplusplus/libxmlplusplus/releases/download/5.6.0/libxml%2B%2B-5.6.0.tar.xz
+        sha256: cd01ad15a5e44d5392c179ddf992891fb1ba94d33188d9198f9daf99e1bc4fec
         x-checker-data:
           type: json
           url: https://api.github.com/repos/libxmlplusplus/libxmlplusplus/releases/latest
