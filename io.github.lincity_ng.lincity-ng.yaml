@@ -1,6 +1,6 @@
 app-id: io.github.lincity_ng.lincity-ng
 runtime: org.freedesktop.Platform
-runtime-version: '25.08'
+runtime-version: "25.08"
 sdk: org.freedesktop.Sdk
 
 command: lincity-ng
@@ -19,8 +19,68 @@ cleanup:
   - /share/doc
 
 modules:
-  - shared-modules/SDL2/SDL2_image.json
-  - shared-modules/SDL2/SDL2_ttf.json
+  # SDL3_mixer and a suitable SDL3 version will be in runtime 26.08
+  # Build them ourselves for the time being
+  # Build options sourced from https://gitlab.com/freedesktop-sdk/freedesktop-sdk
+
+  - name: sdl3
+    buildsystem: cmake-ninja
+    config-opts:
+      - -DBUILD_SHARED_LIBS:BOOL=ON
+      - -DSDL_TEST_LIBRARY:BOOL=OFF
+      - -DSDL_TESTS:BOOL=OFF
+      - -DSDL_EXAMPLES:BOOL=OFF
+      - -DSDL_ALSA:BOOL=OFF
+      - -DSDL_OSS:BOOL=OFF
+      - -DSDL_SNDIO:BOOL=OFF
+      - -DSDL_WAYLAND:BOOL=ON
+      - -DSDL_WAYLAND_SHARED:BOOL=OFF
+      - -DSDL_RPATH:BOOL=OFF
+      - -DSDL_WAYLAND_LIBDECOR=ON
+      - -DSDL_PIPEWIRE_SHARED:BOOL=ON
+      - -DSDL_X11_XSCRNSAVER:BOOL=OFF
+      - -DSDL_X11_XTEST:BOOL=OFF
+    cleanup:
+      - /lib/cmake
+    sources:
+      - type: archive
+        url: https://github.com/libsdl-org/SDL/releases/download/release-3.4.8/SDL3-3.4.8.tar.gz
+        sha256: e9fff7467fb60f037e6708da18b25560649e4c63edc2a69bb871b960d9cbfbba
+        x-checker-data:
+          type: json
+          url: https://api.github.com/repos/libsdl-org/SDL/releases/latest
+          version-query: .tag_name | sub("^release-"; "")
+          url-query: .assets[] | select(.name=="SDL3-" + $version + ".tar.gz")
+            | .browser_download_url
+
+  - name: sdl3-mixer
+    buildsystem: cmake-ninja
+    config-opts:
+      - -DBUILD_SHARED_LIBS=ON
+      - -DSDLMIXER_INSTALL=ON
+      - -DSDLMIXER_INSTALL_MAN=ON
+      - -DSDLMIXER_DEPS_SHARED=ON
+      - -DSDLMIXER_VENDORED=OFF
+      - -DSDLMIXER_STRICT=ON
+      - -DSDLMIXER_TESTS=OFF
+      - -DSDLMIXER_EXAMPLES=OFF
+      - -DSDLMIXER_EXAMPLES_INSTALL=OFF
+      - -DSDLMIXER_GME=OFF
+      - -DSDLMIXER_MOD_XMP=OFF
+      - -DSDLMIXER_MIDI_FLUIDSYNTH=OFF
+    cleanup:
+      - /lib/cmake
+    sources:
+      - type: archive
+        url: https://github.com/libsdl-org/SDL_mixer/releases/download/release-3.2.0/SDL3_mixer-3.2.0.tar.gz
+        sha256: 1f86fae7226d58f2ad210ca4d9e06488db722230032803423d83bad6d35fc395
+        x-checker-data:
+          type: json
+          url: https://api.github.com/repos/libsdl-org/SDL_mixer/releases/latest
+          version-query: .tag_name | sub("^release-"; "")
+          url-query:
+            .assets[] | select(.name=="SDL3_mixer-" + $version + ".tar.gz")
+            | .browser_download_url
 
   - name: libxmlplusplus
     buildsystem: meson
@@ -37,26 +97,23 @@ modules:
           type: json
           url: https://api.github.com/repos/libxmlplusplus/libxmlplusplus/releases/latest
           version-query: .tag_name
-          url-query: .assets[] | select(.name=="libxml++-" + $version + ".tar.xz")
+          url-query:
+            .assets[] | select(.name=="libxml++-" + $version + ".tar.xz")
             | .browser_download_url
 
   - name: lincity-ng
-    # TODO: switch to cmake-ninja once https://github.com/lincity-ng/lincity-ng/issues/274 is resolved
-    buildsystem: cmake
+    buildsystem: cmake-ninja
     config-opts:
       - -DLINCITYNG_VERSION_SUFFIX=flatpak
     sources:
       - type: archive
-        url: https://github.com/lincity-ng/lincity-ng/releases/download/lincity-ng-2.14.2/lincity-ng-2.14.2-Source.tar.xz
-        sha256: 772c0d127d396b307e1d612c41c569196c536b1ed87d242a5403aa3de8de687d
+        url: https://github.com/lincity-ng/lincity-ng/releases/download/lincity-ng-2.15.0/lincity-ng-2.15.0-Source.tar.xz
+        sha256: bc1eba0af24dd451ddf3e5ac8c335b48dcb29033ada424a3f5a798c3b1d91999
         x-checker-data:
           type: json
           is-main-source: true
           url: https://api.github.com/repos/lincity-ng/lincity-ng/releases/latest
           version-query: .tag_name | sub("^lincity-ng-"; "")
-          url-query: .assets[] | select(.name=="lincity-ng-" + $version + "-Source.tar.xz")
+          url-query:
+            .assets[] | select(.name=="lincity-ng-" + $version + "-Source.tar.xz")
             | .browser_download_url
-
-      # Fixup for 2.14.2
-      - type: patch
-        path: release-reorder.patch
