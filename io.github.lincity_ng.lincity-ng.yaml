@@ -117,3 +117,7 @@ modules:
           url-query:
             .assets[] | select(.name=="lincity-ng-" + $version + "-Source.tar.xz")
             | .browser_download_url
+
+        # Fixup for 2.15.0
+      - type: patch
+        path: 349.patch

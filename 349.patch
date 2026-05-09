@@ -1,0 +1,22 @@
+From 67ddb6aa4037d98f5ff14f0a5c178e0c27dc7518 Mon Sep 17 00:00:00 2001
+From: Valeri <v19930312@gmail.com>
+Date: Sat, 9 May 2026 14:23:08 +0300
+Subject: [PATCH] Fix a duplicate key in desktop file
+
+---
+ data/io.github.lincity_ng.lincity-ng.desktop | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/data/io.github.lincity_ng.lincity-ng.desktop b/data/io.github.lincity_ng.lincity-ng.desktop
+index c1928b28..cce64aac 100644
+--- a/data/io.github.lincity_ng.lincity-ng.desktop
++++ b/data/io.github.lincity_ng.lincity-ng.desktop
+@@ -11,7 +11,7 @@ GenericName[ru]=Градостроительный симулятор
+ GenericName[tr]=Şehir Simulasyon Oyunu
+ Comment=Plan and build a city and take care of transport, economics, electricity and others.
+ Comment[de]=Plane und baue eine Stadt und kümmere dich um das Verkehrswesen, die Wirtschaft, Elektrizität und mehr.
+-Comment[de]=Planifier et construire une ville, s’occuper des transports, de l’économie, de l’électricité et autres.
++Comment[fr]=Planifier et construire une ville, s’occuper des transports, de l’économie, de l’électricité et autres.
+ Comment[gd]=Planaig is tog baile agus stiùirich an còmhdhail, an eaconamaidh, na seirbheisean dealain is a bharrachd.
+ Comment[it]=Pianifica e costruisci una città prendendoti cura dei trasporti, dell'economia, dell'elettricità e altro ancora.
+ Comment[ru]=Стройте и развивайте город, его экономику, транспорт, инфраструктуру и т.д.
