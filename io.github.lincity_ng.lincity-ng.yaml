@@ -47,8 +47,8 @@ modules:
       - -DLINCITYNG_VERSION_SUFFIX=flatpak
     sources:
       - type: archive
-        url: https://github.com/lincity-ng/lincity-ng/releases/download/lincity-ng-2.14.2/lincity-ng-2.14.2-Source.tar.xz
-        sha256: 772c0d127d396b307e1d612c41c569196c536b1ed87d242a5403aa3de8de687d
+        url: https://github.com/lincity-ng/lincity-ng/releases/download/lincity-ng-2.15.0/lincity-ng-2.15.0-Source.tar.xz
+        sha256: bc1eba0af24dd451ddf3e5ac8c335b48dcb29033ada424a3f5a798c3b1d91999
         x-checker-data:
           type: json
           is-main-source: true
