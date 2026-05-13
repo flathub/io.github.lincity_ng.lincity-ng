@@ -1,6 +1,6 @@
 app-id: io.github.lincity_ng.lincity-ng
 runtime: org.freedesktop.Platform
-runtime-version: "25.08"
+runtime-version: '25.08'
 sdk: org.freedesktop.Sdk
 
 command: lincity-ng
@@ -50,8 +50,7 @@ modules:
           type: json
           url: https://api.github.com/repos/libsdl-org/SDL/releases/latest
           version-query: .tag_name | sub("^release-"; "")
-          url-query: .assets[] | select(.name=="SDL3-" + $version + ".tar.gz")
-            | .browser_download_url
+          url-query: .assets[] | select(.name=="SDL3-" + $version + ".tar.gz") | .browser_download_url
 
   - name: sdl3-mixer
     buildsystem: cmake-ninja
@@ -72,14 +71,13 @@ modules:
       - /lib/cmake
     sources:
       - type: archive
-        url: https://github.com/libsdl-org/SDL_mixer/releases/download/release-3.2.0/SDL3_mixer-3.2.0.tar.gz
-        sha256: 1f86fae7226d58f2ad210ca4d9e06488db722230032803423d83bad6d35fc395
+        url: https://github.com/libsdl-org/SDL_mixer/releases/download/release-3.2.2/SDL3_mixer-3.2.2.tar.gz
+        sha256: cdb6d2a9f01bb3c1b98c957ee12109dd6ec1a1157682c9bc8523b0fe8ab2da1e
         x-checker-data:
           type: json
           url: https://api.github.com/repos/libsdl-org/SDL_mixer/releases/latest
           version-query: .tag_name | sub("^release-"; "")
-          url-query:
-            .assets[] | select(.name=="SDL3_mixer-" + $version + ".tar.gz")
+          url-query: .assets[] | select(.name=="SDL3_mixer-" + $version + ".tar.gz")
             | .browser_download_url
 
   - name: libxmlplusplus
@@ -97,8 +95,7 @@ modules:
           type: json
           url: https://api.github.com/repos/libxmlplusplus/libxmlplusplus/releases/latest
           version-query: .tag_name
-          url-query:
-            .assets[] | select(.name=="libxml++-" + $version + ".tar.xz")
+          url-query: .assets[] | select(.name=="libxml++-" + $version + ".tar.xz")
             | .browser_download_url
 
   - name: lincity-ng
@@ -114,8 +111,7 @@ modules:
           is-main-source: true
           url: https://api.github.com/repos/lincity-ng/lincity-ng/releases/latest
           version-query: .tag_name | sub("^lincity-ng-"; "")
-          url-query:
-            .assets[] | select(.name=="lincity-ng-" + $version + "-Source.tar.xz")
+          url-query: .assets[] | select(.name=="lincity-ng-" + $version + "-Source.tar.xz")
             | .browser_download_url
 
         # Fixup for 2.15.0
