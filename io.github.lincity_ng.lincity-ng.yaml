@@ -71,8 +71,8 @@ modules:
       - /lib/cmake
     sources:
       - type: archive
-        url: https://github.com/libsdl-org/SDL_mixer/releases/download/release-3.2.2/SDL3_mixer-3.2.2.tar.gz
-        sha256: cdb6d2a9f01bb3c1b98c957ee12109dd6ec1a1157682c9bc8523b0fe8ab2da1e
+        url: https://github.com/libsdl-org/SDL_mixer/releases/download/release-3.2.4/SDL3_mixer-3.2.4.tar.gz
+        sha256: 182a07c745375e113dc740d43964ff21b0be29f29f59876c4dbc4db3d32f6901
         x-checker-data:
           type: json
           url: https://api.github.com/repos/libsdl-org/SDL_mixer/releases/latest
